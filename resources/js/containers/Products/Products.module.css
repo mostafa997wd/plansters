@@ -1,0 +1,22 @@
+.Products {
+    margin: 200px auto;
+    width: 80%;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    border-radius: 2%;
+    padding: 30px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    background-color: rgb(58, 196, 150);
+}
+
+@media (min-width: 600px) {
+    .Products {
+        width: 500px;
+    }
+}
+
+/* @keyframes */

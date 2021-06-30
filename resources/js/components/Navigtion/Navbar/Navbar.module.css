@@ -1,0 +1,17 @@
+.Navbar{
+    width:100%;
+    background-color: rgb(2, 66, 2);
+    height:60px;
+    margin: 0 0 20px;
+    position: absolute;
+     top: 0;
+}
+
+
+
+.Navbar ul{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+}

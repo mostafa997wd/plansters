@@ -1,0 +1,59 @@
+.Input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.Label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.InputElement {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.InputElement:focus {
+    outline: none;
+    background-color: #ccc;
+}
+
+.Invalid {
+    border: 1px solid red;
+    background-color: #FDA49A;
+}
+
+@keyframes sample{
+    0% {
+        background-color: green;
+        left : 100px;
+    }
+    20% {
+        background-color: greenyellow;
+        left: 0px;
+    }
+    40% {
+        background-color: gray;
+        right: 100px;
+    }
+    60% {
+            background-color: greenyellow;
+            right:0;
+    }
+    80%{
+        background-color: green;
+        left : 100px;
+    }
+    100%{
+        background-color: black;
+        left : 0px;
+    }
+}
