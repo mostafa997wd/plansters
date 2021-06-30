@@ -63,7 +63,7 @@ class Products extends Component{
                 },
                 value: false,
                 validation: {
-                  
+
                 },
                 valid: true,
                 touched: false
@@ -76,7 +76,7 @@ class Products extends Component{
                 },
                 value: [],
                 validation: {
-                   
+
                 },
                 valid: true,
                 touched: false
@@ -90,13 +90,13 @@ class Products extends Component{
                 },
                 value: [],
                 validation: {
-                    
+
                 },
                 valid: true,
                 touched: false
             },
         },
-        
+
         addProductDynamicAttributes:[],
         products:[],
         formIsValid: false,
@@ -144,11 +144,16 @@ class Products extends Component{
         axios.post('http://127.0.0.1/api/admin/add-product',formData,{
             headers: {
                 "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${window.sessionStorage.getItem('token')}` 
+                Authorization: `Bearer ${window.sessionStorage.getItem('token')}`
               }
         }).then( response => {
                 // console.log(response.data);
-                this.setState({loading:false});
+                let updatedproducts = {...this.state.products};
+                let updatedProductsData = [...this.state.products.data];
+                updatedProductsData.unshift({id:response.data.product_id,mainimage:response.data.main_image_path,en_name:this.state.addProductForm.englishName.value,ar_name:this.state.addProductForm.arabicName.value,price:this.state.addProductForm.price.value,active:this.state.addProductForm.active.value});
+                updatedproducts.data = updatedProductsData;
+                console.log(updatedproducts);
+                this.setState({products:updatedproducts,loading:false});
                 // this.props.history.push( '/' );
             } )
             .catch( error => {
@@ -156,7 +161,7 @@ class Products extends Component{
                 if (error.response) {
                     // Request made and server responded
                     console.log(error.response.data);
-                  } 
+                  }
                 this.setState( { loading: false } );
             } );
     }
@@ -166,7 +171,7 @@ class Products extends Component{
         if (!rules) {
             return true;
         }
-        
+
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
@@ -213,7 +218,7 @@ class Products extends Component{
         const updatedaddProductForm = {
             ...this.state.addProductForm
         };
-        const updatedFormElement = { 
+        const updatedFormElement = {
             ...updatedaddProductForm[inputIdentifier]
         };
         if(elementType === 'file'){
@@ -228,7 +233,7 @@ class Products extends Component{
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedaddProductForm[inputIdentifier] = updatedFormElement;
-        
+
         let formIsValid = true;
         for (let inputIdentifier in updatedaddProductForm) {
             formIsValid = updatedaddProductForm[inputIdentifier].valid && formIsValid;
@@ -245,13 +250,13 @@ class Products extends Component{
         updatedAddProductDynmicAttributes.push({name:'',value:''})
         this.setState({addProductDynamicAttributes:updatedAddProductDynmicAttributes});
     }
-    
+
     render(){
         let content = null;
 
-       
+
         const formElementsArray = [];
-       
+
         for (let key in this.state.addProductForm) {
             formElementsArray.push({
                 id: key,
@@ -273,8 +278,8 @@ class Products extends Component{
                 let form = (
                     <form onSubmit={this.addProductHandler}>
                         {formElementsArray.map(formElement => (
-                           
-                            <Input 
+
+                            <Input
                                 key={formElement.id}
                                 elementType={formElement.config.elementType}
                                 elementConfig={formElement.config.elementConfig}
@@ -300,10 +305,10 @@ class Products extends Component{
 
             // console.log(this.state.products);
                 return (
-                    <Wrapper>
+                    <div>
                    {content}
-                   {/* <ProductsList products={this.state.products} clicked={this.loadproductsFromPage}/> */}
-                   </Wrapper>
+                   <ProductsList products={this.state.products} clicked={this.loadproductsFromPage}/>
+                   </div>
                 );
     }
     }

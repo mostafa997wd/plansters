@@ -5,13 +5,15 @@ const product = ( props )=>{
     if(props.minimize){
         return (
             <div>
-                <image src={props.image} />
-                name : {props.name}
+                {/* <image src={props.main_image} /> */}
+                <br/>----------------------------------<br/>
+                name : {props.en_name} <br/>
                 price : {props.price}
+                <br/>----------------------------------<br/>
             </div>
         );
     }
-    
+
     let attributes = props.attributes.map(attr=>{
         return <Wrapper>{attr.name}:{attr.value}</Wrapper>
     });

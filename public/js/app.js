@@ -70960,9 +70960,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var product = function product(props) {
   if (props.minimize) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("image", {
-      src: props.image
-    }), "name : ", props.name, "price : ", props.price);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "----------------------------------", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "name : ", props.en_name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "price : ", props.price, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "----------------------------------", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
   }
 
   var attributes = props.attributes.map(function (attr) {
@@ -71003,9 +71001,16 @@ __webpack_require__.r(__webpack_exports__);
   if (props.products.length === 0) {
     content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_Spinner_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
   } else {
-    // let products = props.products.data.map(prod=>{
-    //     return <Product key={prod.id} en_name = {prod.en_name} price = {prod.price} main_image={prod.mainimage} attributes={prod.attributes}/>
-    // });
+    var products = props.products.data.map(function (prod) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Product_Product__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        key: prod.id,
+        en_name: prod.en_name,
+        price: prod.price,
+        main_image: prod.mainimage,
+        attributes: prod.attributes,
+        minimize: true
+      });
+    });
     var paginate = Array();
 
     var _loop = function _loop(i) {
@@ -71017,16 +71022,16 @@ __webpack_require__.r(__webpack_exports__);
       }, i));
     };
 
-    for (var i = 0; i < props.products.last_page; i++) {
+    for (var i = 1; i <= props.products.last_page; i++) {
       _loop(i);
     }
 
     content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: _ProductsList_module_css__WEBPACK_IMPORTED_MODULE_4___default.a.ProductsList
-    }, paginate);
+    }, products, paginate);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_hoc_Wrapper__WEBPACK_IMPORTED_MODULE_3__["default"], null, "list", content);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_hoc_Wrapper__WEBPACK_IMPORTED_MODULE_3__["default"], null, content);
 });
 
 /***/ }),
@@ -71605,10 +71610,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ProductsList_ProductsList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/ProductsList/ProductsList */ "./resources/js/components/ProductsList/ProductsList.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71620,6 +71621,10 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -71812,7 +71817,23 @@ var Products = /*#__PURE__*/function (_Component) {
         }
       }).then(function (response) {
         // console.log(response.data);
+        var updatedproducts = _objectSpread({}, _this.state.products);
+
+        var updatedProductsData = _toConsumableArray(_this.state.products.data);
+
+        updatedProductsData.unshift({
+          id: response.data.product_id,
+          mainimage: response.data.main_image_path,
+          en_name: _this.state.addProductForm.englishName.value,
+          ar_name: _this.state.addProductForm.arabicName.value,
+          price: _this.state.addProductForm.price.value,
+          active: _this.state.addProductForm.active.value
+        });
+        updatedproducts.data = updatedProductsData;
+        console.log(updatedproducts);
+
         _this.setState({
+          products: updatedproducts,
           loading: false
         }); // this.props.history.push( '/' );
 
@@ -72001,7 +72022,10 @@ var Products = /*#__PURE__*/function (_Component) {
       } // console.log(this.state.products);
 
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_hoc_Wrapper__WEBPACK_IMPORTED_MODULE_5__["default"], null, content);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, content, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ProductsList_ProductsList__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        products: this.state.products,
+        clicked: this.loadproductsFromPage
+      }));
     }
   }]);
 

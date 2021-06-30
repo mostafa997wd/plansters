@@ -43,7 +43,7 @@ class GuestController extends Controller
     }
 
     public function getAllProducts(){
-        $products =  Product::where('active',true)->paginate(10);
+        $products =  Product::where('active',true)->orderBy('created_at','desc')->paginate(10);
         $products->load('attributes');
         $products->load('images');
         return response()->json($products,200);

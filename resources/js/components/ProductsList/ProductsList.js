@@ -12,22 +12,21 @@ export default ( props )=>{
         content = <Spinner />;
     }
     else{
-    // let products = props.products.data.map(prod=>{
-    //     return <Product key={prod.id} en_name = {prod.en_name} price = {prod.price} main_image={prod.mainimage} attributes={prod.attributes}/>
-    // });
+    let products = props.products.data.map(prod=>{
+        return <Product key={prod.id} en_name = {prod.en_name} price = {prod.price} main_image={prod.mainimage} attributes={prod.attributes} minimize/>
+    });
     let paginate = Array();
-    for(let i=0 ; i< props.products.last_page;i++){
+    for(let i=1 ; i<= props.products.last_page;i++){
     paginate.push(<button key={'page'+i} onClick={event=>{props.clicked(i)}}>{i}</button>);
     }
     content = <div className={styles.ProductsList}>
-        {/* {products} */}
+        {products}
         {paginate}
     </div>
     }
 
     return (
         <Wrapper>
-            list
             {content}
         </Wrapper>
     );
